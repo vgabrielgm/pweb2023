@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+
+    <!DOCTYPE html>
 <html>
 <head>
     <!-- Required meta tags -->
@@ -12,6 +15,21 @@
   </head>
   
 <body>
+
+
+<%
+
+String nome= request.getParameter("name");
+if(nome== null)
+ nome="";
+
+String email= request.getParameter("email");
+if(email== null)
+email="";
+%>
+
+
+
 		<div class="container-fluid">
 		
 		
@@ -19,11 +37,16 @@
 				
 				<form  method="post" action="cadastrarUsuario">
 				
-		        <label for="name" class"">Nome:</label> 
-		        <input type="text" name="name" id="name">
+		        <label for="name" class"" >Nome:</label> 
+		        
+		        <input type="text" name="name" id="name" value="<%out.print (nome); %>"  >
+		
 		
 		       <label for="email">email:</label> 
-		        <input type="text" name="email" id="email">
+		       
+		        <input type="text" name="email" id="email" value="<%out.print (email); %>">
+		        
+		        
 		        <br> <br>
 		        <label for="senha">Senha:</label>
 		        <input type="password" name="senha" id="senha"> 
@@ -32,9 +55,9 @@
 		        <input type="password" name="senha2" id="senha2"> 
 		        <label for="data">Data de aniversario:</label>
 		        <input type="Date" name="date" id="date"> <br><br>
-		        <input type="submit" value="Salvar">
+		           <input type="submit" value="Salvar">
 		        <a class="btn btn-primary" href="cadastrarUsuario" role="button">listar Usuarios</a>
-		        <a class="btn btn-primary" href="index.html" role="button">Voltar</a>
+		        <a class="btn btn-primary" href="usuarioCadastro.jsp" role="button">Voltar</a>
 		      
 		        
 		        
@@ -44,6 +67,9 @@
  
  
 		</div>
+		
+		
+	
 
 </body>
 </html>

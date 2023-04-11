@@ -26,7 +26,7 @@ public class CadastroUsuarioServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		//
-		
+		doPost(req, resp);
 		//
 		String senha1= req.getParameter("senha");
 		String senha2= req.getParameter("senha2");
@@ -49,7 +49,7 @@ public class CadastroUsuarioServlet extends HttpServlet {
 		} else {
 			
 			//volta para a pagina de cadastro novamente 
-			req.getRequestDispatcher("Index2.html").forward(req, resp);
+			req.getRequestDispatcher("usuarioCadastro.jsp").forward(req, resp);
 			
 			
 		}
