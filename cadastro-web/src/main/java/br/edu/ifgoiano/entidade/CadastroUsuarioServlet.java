@@ -10,71 +10,52 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.edu.ifgoiano.entidade.Usuario;
+
 @WebServlet("/cadastrarUsuario")
 public class CadastroUsuarioServlet extends HttpServlet {
 
-	//simulando banco de dados 
+	private static final long serialVersionUID = 7869758393435911873L;
 	
-	private List<Usuario>lstDeUsuario;
+	//Simular o banco de dados
+	private List<Usuario> lstDeUsuario;
 	
 	@Override
 	public void init() throws ServletException {
-		this.lstDeUsuario= new ArrayList<Usuario>();	}
-	
-	
+		this.lstDeUsuario = new ArrayList<Usuario>();
+	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//
-		doPost(req, resp);
-		//
-		String senha1= req.getParameter("senha");
-		String senha2= req.getParameter("senha2");
+		String senha1 = req.getParameter("senha1");
+		String senha2 = req.getParameter("senha2");
 		
-		
-		
-		//verifica se a senhas estão iguais 
+		//Verificar se as senhas são iguais
 		if(senha1.equals(senha2)) {
 			Usuario usu = new Usuario();
-			usu.setNome(req.getParameter("name"));
+			usu.setNome(req.getParameter("nome"));
 			usu.setEmail(req.getParameter("email"));
 			usu.setSenha(senha1);
 			
 			lstDeUsuario.add(usu);
 			
-			//redireciona o usuario para o login
+			//redirecionar o usuário para a página de login
 			resp.sendRedirect("index.html");
-			
-			
-		} else {
-			
-			//volta para a pagina de cadastro novamente 
+		}else {
+			//redirecionar o usuário para a mesma página de cadastro do usuário.
 			req.getRequestDispatcher("usuarioCadastro.jsp").forward(req, resp);
-			
-			
 		}
-		
-		
-		
 	}
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		for (Usuario usuario : lstDeUsuario) {
-			System.out.println(usuario.getNome().concat("-").concat(usuario.getEmail()));
-			
-			
+			System.out.println(usuario.getNome().concat(" - ").concat(usuario.getEmail()));
 		}
 	}
 	
-	
-	//apaga os elementos da lista 
 	@Override
 	public void destroy() {
 		this.lstDeUsuario.clear();
 	}
-	
-	
-
-	
 }
